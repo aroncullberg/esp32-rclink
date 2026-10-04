@@ -1,0 +1,193 @@
+menu "RC link"
+choice RCLINK_PROTOCOL
+    prompt "Receiver protocol"
+    default RCLINK_PROTOCOL_AUTO
+config RCLINK_PROTOCOL_AUTO
+    bool "Auto (try CRSF, then SBUS)"
+config RCLINK_PROTOCOL_CRSF
+    bool "CRSF"
+config RCLINK_PROTOCOL_SBUS
+    bool "SBUS"
+endchoice
+config RCLINK_SBUS_INVERTED
+    bool "Invert SBUS RX"
+    default y
+config RCLINK_ZERO_LQ_FAILSAFE
+    bool "Fail when CRSF uplink quality reaches zero"
+    default n
+    help
+        Mark the link as lost when the receiver reports zero uplink quality,
+        and wait for a nonzero report before allowing it to recover.
+config RCLINK_UART
+    int "UART number"
+    range 0 2
+    default 1
+config RCLINK_TX_PIN
+    int "TX GPIO"
+    range 0 48
+    default 4 if IDF_TARGET_ESP32C3
+    default 17
+config RCLINK_RX_PIN
+    int "RX GPIO"
+    range 0 48
+    default 5 if IDF_TARGET_ESP32C3
+    default 16
+config RCLINK_CRSF_BAUD
+    int "CRSF baud"
+    range 100000 1000000
+    default 420000
+config RCLINK_TIMEOUT_MS
+    int "Channel timeout (ms)"
+    range 1 10000
+    default 300
+config RCLINK_PROBE_MS
+    int "Protocol detection interval (ms)"
+    range 10 10000
+    default 1000
+config RCLINK_PARSER_GAP_MS
+    int "Incomplete frame timeout (ms)"
+    range 1 100
+    default 10
+config RCLINK_EVALUATION_MS
+    int "Link check interval (ms, rounded up to an RTOS tick)"
+    range 1 100
+    default 5
+config RCLINK_RECOVERY_FRAMES
+    int "Valid channel frames required for recovery"
+    range 1 1000
+    default 3
+config RCLINK_DETECTION_FRAMES
+    int "Channel frames required for protocol detection"
+    range 2 1000
+    default 2
+config RCLINK_LOW_THRESHOLD
+    int "Low/mid boundary (0..2000)"
+    range 0 1999
+    default 667
+config RCLINK_HIGH_THRESHOLD
+    int "Mid/high boundary (0..2000)"
+    range 1 2000
+    default 1333
+config RCLINK_DEADBAND
+    int "Bipolar center deadband (0..999)"
+    range 0 999
+    default 0
+config RCLINK_RF_TIMEOUT_MS
+    int "Link statistics timeout (ms)"
+    range 1 10000
+    default 1000
+config RCLINK_TELEMETRY_INTERVAL_MS
+    int "Time between telemetry transmissions (ms)"
+    range 1 1000
+    default 20
+config RCLINK_TELEMETRY_TTL_MS
+    int "Telemetry sample timeout (ms)"
+    range 1 60000
+    default 2000
+config RCLINK_HEARTBEAT_MS
+    int "CRSF heartbeat interval (ms, 0 to disable)"
+    range 0 60000
+    default 1000
+config RCLINK_TELEMETRY_SLOTS
+    int "Telemetry queue capacity"
+    range 1 128
+    default 32
+config RCLINK_TASK_STACK
+    int "Receiver task stack size (bytes)"
+    range 4096 32768
+    default 8192
+config RCLINK_TASK_PRIORITY
+    int "Receiver task priority"
+    range 1 24
+    default 5
+config RCLINK_SBUS_MIN
+    int "SBUS minimum channel value"
+    range 0 2047
+    default 192
+config RCLINK_SBUS_CENTER
+    int "SBUS center channel value"
+    range 0 2047
+    default 992
+config RCLINK_SBUS_MAX
+    int "SBUS maximum channel value"
+    range 0 2047
+    default 1792
+config RCLINK_CRSF_MIN
+    int "CRSF minimum channel value"
+    range 0 2047
+    default 172
+config RCLINK_CRSF_CENTER
+    int "CRSF center channel value"
+    range 0 2047
+    default 992
+config RCLINK_CRSF_MAX
+    int "CRSF maximum channel value"
+    range 0 2047
+    default 1810
+menu "Failsafe fallback channels (0..2000)"
+config RCLINK_FALLBACK_CH1
+    int "Channel 1 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH2
+    int "Channel 2 fallback"
+    range 0 2000
+    default 1000
+config RCLINK_FALLBACK_CH3
+    int "Channel 3 fallback"
+    range 0 2000
+    default 1000
+config RCLINK_FALLBACK_CH4
+    int "Channel 4 fallback"
+    range 0 2000
+    default 1000
+config RCLINK_FALLBACK_CH5
+    int "Channel 5 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH6
+    int "Channel 6 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH7
+    int "Channel 7 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH8
+    int "Channel 8 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH9
+    int "Channel 9 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH10
+    int "Channel 10 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH11
+    int "Channel 11 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH12
+    int "Channel 12 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH13
+    int "Channel 13 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH14
+    int "Channel 14 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH15
+    int "Channel 15 fallback"
+    range 0 2000
+    default 0
+config RCLINK_FALLBACK_CH16
+    int "Channel 16 fallback"
+    range 0 2000
+    default 0
+endmenu
+endmenu

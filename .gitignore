@@ -1,0 +1,13 @@
+**/build/
+**/managed_components/
+**/sdkconfig
+**/sdkconfig.old
+**/dependencies.lock
+__pycache__/
+/compile_commands.json
+docs/
+.clang-format
+.clangd
+PLAN.md
+.cache
+tests/

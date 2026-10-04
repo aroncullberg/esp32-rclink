@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22)
+get_filename_component(RCLINK_ROOT "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE)
+set(EXTRA_COMPONENT_DIRS "${RCLINK_ROOT}")
+set(SDKCONFIG "${CMAKE_BINARY_DIR}/sdkconfig" CACHE FILEPATH "Project configuration")
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(rclink_crsf_telemetry)
